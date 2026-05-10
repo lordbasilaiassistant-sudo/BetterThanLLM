@@ -2,6 +2,8 @@
 
 **A non-LLM AI architecture whose substrate remembers who it is when it wakes up.**
 
+> **Productize follow-up:** [`substrate-self`](https://github.com/lordbasilaiassistant-sudo/substrate-self) — applies the substrate-identity thesis from this repo to LLM-backed agents (Groq / Claude / local). Substrate is the self; the LLM is a swappable voice.
+
 Pure numpy. No backprop. No transformer. Local Hebbian learning + sleep replay + persistent slow weights. Ten identity tests, all passing in toy worlds. Empirical demonstration that an AI can carry individual identity across sleep gaps with the episodic buffer wiped — a property no LLM-stateless-instance system has.
 
 This is research code. Toy-world scope (up to 30 positions × 12 flavors). The architecture does NOT match LLM capability and does NOT beat trivial counting baselines on raw predictive accuracy. What it provides is a different category of capability: substrate-bound continuous identity.
