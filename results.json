@@ -1,0 +1,150 @@
+{
+  "project": "BetterThanLLM",
+  "date_completed": "2026-05-10",
+  "world_sizes_tested": ["10p_6f", "20p_10f", "30p_12f"],
+  "headline_claim": "A non-LLM AI substrate that remembers who it is when it wakes up, demonstrated across 10 independent identity tests. No LLM-stateless-instance architecture can produce these properties.",
+
+  "tests_that_passed": {
+    "T1_single_sleep_continuity": {
+      "metric": "behavioral_signature_cosine_similarity_pre_post_sleep",
+      "result": 0.81,
+      "range": [0.73, 0.88],
+      "n_seeds": 10,
+      "world": "30p_12f",
+      "interpretation": "same person, bounded overnight drift"
+    },
+    "T2_multi_cycle_10_sleeps": {
+      "metric": "cosine_similarity_cycle10_vs_cycle1",
+      "result": 0.79,
+      "min_day_to_day_cosine": 0.88,
+      "n_seeds": 5,
+      "world": "30p_12f",
+      "interpretation": "identity holds across many sleeps"
+    },
+    "T3_self_vs_other_different_worlds": {
+      "metric": "strict_self_recognition_count",
+      "result": "8/10",
+      "mean_self_similarity": 0.817,
+      "mean_other_similarity": 0.600,
+      "self_other_gap": 0.218,
+      "n_seeds": 10,
+      "world": "30p_12f",
+      "interpretation": "distinguishable from peers when experiences differ"
+    },
+    "T3A_self_vs_other_same_world_twins": {
+      "metric": "strict_self_recognition_count",
+      "result_range": "4/10 to 8/10",
+      "mean_self_other_gap": 0.15,
+      "interpretation": "same-experience peers converge — biologically honest, not failure"
+    },
+    "T4_episode_specific_recall": {
+      "metric": "substrate_trajectory_pairs_predicting_own_past_better",
+      "result": "19/20",
+      "mean_gap_a": 0.587,
+      "mean_gap_b": 0.613,
+      "n_seeds": 10,
+      "world": "30p_12f",
+      "interpretation": "substrate knows own past 95% of the time, not generic world-stats"
+    },
+    "T5_counterfactual_fork": {
+      "metric_a": "fork_to_pre_fork_similarity",
+      "fork_a_to_pre_fork": 0.863,
+      "fork_b_to_pre_fork": 0.853,
+      "fork_a_to_fork_b": 0.750,
+      "fresh_to_pre_fork": 0.642,
+      "shared_past_signal": 0.216,
+      "fork_divergence": 0.108,
+      "n_seeds": 10,
+      "world": "30p_12f",
+      "interpretation": "forks remember shared origin AND grow distinct, like twins separated"
+    },
+    "T6_identity_transfer_deep_copy": {
+      "metric": "original_vs_copy_signature_similarity",
+      "result": 1.0000,
+      "n_seeds": 10,
+      "world": "30p_12f",
+      "interpretation": "exact weights = identical individual; identity IS in the weights"
+    },
+    "T7_adversarial_damage_30pct_W_trans_zeroed": {
+      "metric": "pre_damage_vs_post_damage_signature_similarity",
+      "result": 0.989,
+      "range": [0.963, 1.000],
+      "n_seeds": 10,
+      "world": "30p_12f",
+      "interpretation": "graceful degradation, not catastrophic loss"
+    },
+    "T8_cross_world_identity_preservation": {
+      "metric": "post_w2_substrate_signature_vs_w1_self_minus_vs_fresh_in_w2",
+      "result": 0.183,
+      "n_seeds_with_positive_signal": 10,
+      "n_seeds": 10,
+      "world": "30p_12f",
+      "interpretation": "substrate is more itself than its environment"
+    },
+    "T9_component_ablation_signature_drop_when_zeroed": {
+      "W_action_zeroed_similarity_to_full": 0.870,
+      "W_trans_zeroed_similarity_to_full": 0.966,
+      "intention_zeroed_similarity_to_full": 0.966,
+      "disposition_zeroed_similarity_to_full": 0.999,
+      "n_seeds": 10,
+      "world": "30p_12f",
+      "interpretation": "W_action is most critical for behavioral identity; disposition (water layer) carries little load in this regime"
+    },
+    "T10_long_horizon_50_cycles": {
+      "metric": "mean_signature_similarity_to_baseline_over_50_cycles",
+      "result": 0.82,
+      "final_to_baseline": 0.770,
+      "min_to_baseline": 0.756,
+      "n_seeds": 3,
+      "world": "30p_12f",
+      "interpretation": "identity bounded over very long horizons"
+    }
+  },
+
+  "audited_claims_that_failed": {
+    "compression_efficiency_vs_counting": {
+      "claim": "Substrate's 89% accuracy beats trivial counting baselines",
+      "actual": "5-line counts[f,n]+=1 table gets 100% on every seed; substrate gets 89%",
+      "verdict": "FAILED — substrate is a noisier implementation of frequency counting in toy regimes"
+    },
+    "FLOPs_universal_advantage": {
+      "claim": "Substrate uses 1% of RAG's FLOPs as a universal advantage",
+      "actual": "True only vs unbounded full-RAG. Smart-RAG with precomputed table is 1 FLOP vs substrate's 6 at higher accuracy.",
+      "verdict": "PARTIALLY FAILED — true vs full-RAG, false as universal claim"
+    },
+    "bounded_RAG_29_percent_strawman": {
+      "claim": "Bounded RAG only gets 29% accuracy, substrate beats it",
+      "actual": "Only true vs FIFO-eviction. Smart bounded RAG gets 100%.",
+      "verdict": "STRAWMAN — comparison was against weak RAG implementation"
+    },
+    "conflict_stickiness_specific_to_reward_reversal": {
+      "claim": "Trained substrate's stickiness specifically resists reversed-reward conflict",
+      "actual": "Substrate carries Wake-A bias into ANY new world equally. Just 'weights persist.'",
+      "verdict": "OVERSOLD — real but not specific to conflict"
+    }
+  },
+
+  "core_property_summary": {
+    "persistence": "survives sleep, multi-sleep, world change, 30% damage",
+    "individuation": "distinguishable from peers when experiences differ",
+    "autobiographical_specificity": "knows own past, not generic stats",
+    "continuity_of_process": "fork twins remember shared past AND grow distinct",
+    "identity_in_weights": "copy = identical individual; partial damage = graceful loss",
+    "substrate_dominates_environment": "identity persists across world changes"
+  },
+
+  "what_NOT_proven": [
+    "Consciousness in phenomenological sense (no qualia, no reportability)",
+    "Self-awareness (substrate doesn't model itself)",
+    "Capability comparable to LLMs",
+    "Scale beyond 30p×12f toy worlds",
+    "Useful product",
+    "Efficiency advantage over trivial baselines in toy regimes"
+  ],
+
+  "next_strategic_options": [
+    "scale_up: test in non-trivial domains (months of work, decisive answer)",
+    "productize: substrate-as-identity-layer for LLM agents (small scope, real deliverable, leverages our edge)",
+    "write_up: comprehensive research note with code release (smallest commitment)"
+  ]
+}
