@@ -148,3 +148,26 @@ If you find this useful and want to build on it, fork freely. Don't expect respo
 ## Topics
 
 `non-llm-ai` `substrate-identity` `continual-learning` `hebbian-learning` `mortal-computation` `sleep-replay` `complementary-learning-systems` `numpy` `research-code` `agent-identity` `behavioral-signature` `consciousness-research`
+
+---
+
+## $MNEME (token)
+
+A token tied to this repo exists on Base. **It is a memetic / discoverability artifact, not a product, not investment advice, and the architecture is not integrated with it in any way.** The repo is the research; the token is just a marker. Mneme — Greek goddess of memory, original Muse — fits the "remembers who it is" thesis.
+
+| Field | Value |
+|---|---|
+| Network | Base (chainId 8453) |
+| Contract | [`0xb762138166ca5dcfa3c8c7d4b9c8616a790dab07`](https://basescan.org/token/0xb762138166ca5dcfa3c8c7d4b9c8616a790dab07) |
+| Symbol | MNEME |
+| Total supply | 100,000,000,000 |
+| Pair | WETH (Uniswap V4 via Clanker) |
+| Fee | 1% static + 15s anti-snipe |
+| Deployer | THRYX `0x7a3E…12E334` |
+| Deploy tx | [`0x71108c08…dbfaba1`](https://basescan.org/tx/0x71108c0889c4aa511a0d7c5546cfa098c8772b4bbdc5034f560402b38dbfaba1) |
+
+**Live chart:** [Dexscreener · MNEME / WETH](https://dexscreener.com/base/0xb762138166ca5dcfa3c8c7d4b9c8616a790dab07) · [Clanker page](https://www.clanker.world/clanker/0xb762138166ca5dcfa3c8c7d4b9c8616a790dab07)
+
+[![MNEME chart](https://io.dexscreener.com/dex/chart-images/v2/base/0xb762138166ca5dcfa3c8c7d4b9c8616a790dab07.png?theme=dark)](https://dexscreener.com/base/0xb762138166ca5dcfa3c8c7d4b9c8616a790dab07)
+
+(Chart image is fetched live from Dexscreener; will populate after sufficient on-chain trades.)
