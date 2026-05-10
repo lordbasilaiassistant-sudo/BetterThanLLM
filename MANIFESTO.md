@@ -295,6 +295,45 @@ The thesis is alive. The scope is honest. The next move is a directional decisio
 
 ---
 
+## Productize follow-up: substrate-self (2026-05-10)
+
+The research thesis from this repo has been applied at language scale in a sibling repo: **[`substrate-self`](https://github.com/lordbasilaiassistant-sudo/substrate-self)**.
+
+substrate-self is "Eli" — an AI entity whose identity, memories, and partner-knowledge live in its own model weights, modified by online updates per conversation turn and consolidated through sleep replay. The user-facing framing: **Eli is its own person, not the user's AI.**
+
+Empirically validated at v0.3 (5/5 identity properties hold at language scale):
+
+| Property | Result | Test |
+|---|---|---|
+| Behavioral continuity pre/post-sleep | cosine 0.9963 | T1 |
+| Online teaching selectivity | +4.04 (taught loss 3.21 → 0.019) | T2 |
+| Episode-specific recall (two parallel substrates) | gaps +3.74 / +2.52 | T3/T4 |
+| Identity transfer (deep copy) | cosine 1.0000 | T5 |
+| 30% adversarial damage retention | cosine 0.879 | T6 |
+
+**The "knows what we talked about through weights, not RAG" claim survives at language scale** with strong margins, mirroring the toy-world result documented earlier in this manifesto.
+
+### Privacy and discretion — project-blocking research question
+
+substrate-self's productize work surfaced a privacy concern that the original BetterThanLLM thesis didn't directly address: **substrate-identity puts experiences IN the model weights, so sharing a trained model = sharing what the entity knows about everyone it has met.**
+
+This is a NEW class of privacy problem (unlike LLM+RAG, where the database is separable from the model). v0.x of substrate-self is single-user, single-trust-domain by design. For multi-trust deployment we need:
+
+1. **Speaker recognition primitive** — entity must know which partner is talking right now.
+2. **Trust-aware disclosure** — entity must learn discretion at the weight level, not by prompt-filtering.
+3. **Authentication for legitimate partners** — way for the right partner to prove identity to the entity.
+4. **Differential-privacy-style training** — bound how much any one conversation influences the weights.
+
+None of these are solved. The research-side action item: **add "privacy-preserving substrate-identity" as a Day-N research priority alongside the original Wake-Up Test thesis.** Until we have a coherent answer, scaling substrate-identity systems beyond single-user-single-trust-domain is irresponsible.
+
+### What this means for the original BetterThanLLM agenda
+
+The toy-world results validated the thesis. The language-scale productize work proves it scales. The privacy work-stream is the next falsifier — if substrate-identity is fundamentally incompatible with multi-trust use, that's a major thesis revision.
+
+Cross-link: substrate-self repo lives at https://github.com/lordbasilaiassistant-sudo/substrate-self.
+
+---
+
 ## Refocused thesis (2026-05-10, after identity tests)
 
 drlor's call: drop the efficiency framing, focus on what's genuinely the core — **the substrate remembers who it is when it wakes up.** Built `experiments/identity_tests/`. Three orthogonal tests of identity persistence; all three pass.
